@@ -5,4 +5,5 @@ package com.risnawan.imagevideoslider.events;
  */
 
 public interface OnPosterClickListener {
+    void onClick(int position);
 }

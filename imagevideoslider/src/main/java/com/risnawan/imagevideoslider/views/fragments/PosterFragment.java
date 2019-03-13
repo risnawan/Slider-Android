@@ -43,6 +43,8 @@ import com.risnawan.imagevideoslider.posters.RawVideo;
 import com.risnawan.imagevideoslider.posters.RemoteImage;
 import com.risnawan.imagevideoslider.posters.RemoteVideo;
 import com.risnawan.imagevideoslider.posters.VideoPoster;
+import com.risnawan.imagevideoslider.views.AdjustableImageView;
+import com.risnawan.imagevideoslider.views.PosterSlider;
 
 import static com.google.android.exoplayer2.Player.STATE_ENDED;
 
