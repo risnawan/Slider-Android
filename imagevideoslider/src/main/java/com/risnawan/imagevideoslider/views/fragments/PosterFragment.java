@@ -33,7 +33,6 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.exoplayer2.upstream.RawResourceDataSource;
 import com.google.android.exoplayer2.util.Util;
 import com.risnawan.imagevideoslider.events.IVideoPlayListener;
@@ -165,6 +164,7 @@ public class PosterFragment extends Fragment implements Player.EventListener{
                 if(isLooping){
                     playerView.setUseController(false);
                 }
+                player.setPlayWhenReady(true);
 
                 if(poster instanceof RawVideo){
                     RawVideo video = (RawVideo) poster;
@@ -239,7 +239,6 @@ public class PosterFragment extends Fragment implements Player.EventListener{
 
     @Override
     public void onPlayerError(ExoPlaybackException error) {
-
     }
 
     @Override
@@ -255,6 +254,32 @@ public class PosterFragment extends Fragment implements Player.EventListener{
     @Override
     public void onSeekProcessed() {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (player != null){
+            player.setPlayWhenReady(true);
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (player != null)
+            player.setPlayWhenReady(false);
+
+    }
+
+    @Override
+    public void onDestroy() {
+        if (player != null){
+            player.stop();
+            player.release();
+            player = null;
+        }
+        super.onDestroy();
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.risnawan.imagevideoslider.events.IFragmentLifecycle;
 import com.risnawan.imagevideoslider.events.OnPosterClickListener;
 import com.risnawan.imagevideoslider.posters.DrawableImage;
 import com.risnawan.imagevideoslider.posters.Poster;
@@ -20,6 +21,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private PosterSlider posterSlider;
+    private List<Poster> posters = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         posterSlider = findViewById(R.id.poster_slider);
-        List<Poster> posters = new ArrayList<>();
+
 //        posters.add(new DrawableImage(R.drawable.advert));
 //        posters.add(new RawVideo(R.raw.videodummy));
 //        posters.add(new RemoteVideo(Uri.parse("http://test.ireappos.com/toengclsadmin/videoadvertimage/videodummy.mp4")));
@@ -42,4 +44,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
