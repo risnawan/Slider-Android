@@ -1,8 +1,10 @@
 package com.risnawan.imagevideoslider.views.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +32,7 @@ import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.exoplayer2.upstream.RawResourceDataSource;
 import com.google.android.exoplayer2.util.Util;
@@ -45,6 +48,8 @@ import com.risnawan.imagevideoslider.posters.RemoteVideo;
 import com.risnawan.imagevideoslider.posters.VideoPoster;
 import com.risnawan.imagevideoslider.views.AdjustableImageView;
 import com.risnawan.imagevideoslider.views.PosterSlider;
+
+import java.util.Objects;
 
 import static com.google.android.exoplayer2.Player.STATE_ENDED;
 
@@ -85,6 +90,7 @@ public class PosterFragment extends Fragment implements Player.EventListener{
         poster = getArguments().getParcelable("poster");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -184,11 +190,10 @@ public class PosterFragment extends Fragment implements Player.EventListener{
                 else if(poster instanceof RemoteVideo){
                     RemoteVideo video = (RemoteVideo) poster;
                     MediaSource mediaSource = new ExtractorMediaSource.Factory(
-                            new DefaultHttpDataSourceFactory(Util.getUserAgent(getActivity(),"PosterSlider"))).
+                            new DefaultDataSourceFactory(Objects.requireNonNull(getContext()), Util.getUserAgent(getActivity(),"PosterSlider"))).
                             createMediaSource(video.getUri());
-                    player.prepare(mediaSource, true, false);
+                    player.prepare(mediaSource, true, true);
                 }
-
 
                 return playerView;
             }
