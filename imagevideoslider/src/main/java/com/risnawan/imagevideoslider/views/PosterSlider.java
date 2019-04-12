@@ -520,8 +520,17 @@ public class PosterSlider extends FrameLayout implements ViewPager.OnPageChangeL
 
     public void removeAllPosters(){
         this.posters.clear();
-        this.slideIndicatorsGroup.removeAllViews();
-        this.slideIndicatorsGroup.setSlides(0);
+        if (this.slideIndicatorsGroup != null){
+            this.slideIndicatorsGroup.removeAllViews();
+            this.slideIndicatorsGroup.setSlides(0);
+        }else{
+            slideIndicatorsGroup = new SlideIndicatorsGroup(getContext(), selectedSlideIndicator, unSelectedSlideIndicator, defaultIndicator, indicatorSize, mustAnimateIndicators);
+//            addView(slideIndicatorsGroup);
+//            for (int i = 0; i < posters.size(); i++) {
+//                slideIndicatorsGroup.onSlideAdd();
+//            }
+        }
+
         invalidate();
         requestLayout();
     }

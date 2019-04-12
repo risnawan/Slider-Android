@@ -14,7 +14,7 @@ public class CustomViewPager extends ViewPager {
 
     public CustomViewPager(Context context, boolean mustWrapContent) {
         super(context);
-        this.mustWrapContent=mustWrapContent;
+        this.mustWrapContent = mustWrapContent;
     }
 
     @Override
@@ -28,7 +28,10 @@ public class CustomViewPager extends ViewPager {
                 if (h > height) height = h;
             }
 
-            heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
+            if (height != 0) {
+                heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
+            }
+
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
