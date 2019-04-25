@@ -160,6 +160,8 @@ public class PosterFragment extends Fragment implements Player.EventListener{
                 player = ExoPlayerFactory.newSimpleInstance(getActivity(),trackSelector);
                 //
 
+                player.setVolume(0f);
+
                 playerView.setPlayer(player);
                 if(isLooping){
                     playerView.setUseController(false);
@@ -292,6 +294,8 @@ public class PosterFragment extends Fragment implements Player.EventListener{
             }
             player.setPlayWhenReady(true);
             player.addListener(this);
+        }else if (isVisibleToUser && isLooping){
+
         }
     }
 }
