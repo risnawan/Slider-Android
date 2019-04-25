@@ -93,6 +93,7 @@ public class PosterFragment extends Fragment implements Player.EventListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         if(poster!=null){
             if(poster instanceof ImagePoster){
                 final AdjustableImageView imageView = new AdjustableImageView(getActivity());
@@ -166,7 +167,7 @@ public class PosterFragment extends Fragment implements Player.EventListener{
                 if(isLooping){
                     playerView.setUseController(false);
                 }
-                player.setPlayWhenReady(true);
+//                player.setPlayWhenReady(true);
 
                 if(poster instanceof RawVideo){
                     RawVideo video = (RawVideo) poster;
@@ -262,7 +263,7 @@ public class PosterFragment extends Fragment implements Player.EventListener{
     public void onResume() {
         super.onResume();
         if (player != null){
-            player.setPlayWhenReady(true);
+//            player.setPlayWhenReady(true);
         }
     }
 
@@ -294,8 +295,6 @@ public class PosterFragment extends Fragment implements Player.EventListener{
             }
             player.setPlayWhenReady(true);
             player.addListener(this);
-        }else if (isVisibleToUser && isLooping){
-
         }
     }
 }
