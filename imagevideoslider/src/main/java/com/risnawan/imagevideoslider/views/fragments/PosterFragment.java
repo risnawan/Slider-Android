@@ -262,9 +262,14 @@ public class PosterFragment extends Fragment implements Player.EventListener{
     @Override
     public void onResume() {
         super.onResume();
-        if (player != null){
-//            player.setPlayWhenReady(true);
+        if (!getUserVisibleHint()) {
+            return;
+        }else {
+            if (player != null){
+                player.setPlayWhenReady(true);
+            }
         }
+
     }
 
     @Override
